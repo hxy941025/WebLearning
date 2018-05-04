@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+    padding: 0;
+    /*box-sizing: border-box;*/
+}
+
+html,body{
+    height: 100%;
+}
+
+#test1{
+    height: 10%;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+#test1 .left{
+    width: 30%;
+    background: red;
+    float: left;
+    height: 100%;
+}
+
+#test1 .right{
+    width: 70%;
+    background: blue;
+    float: left;
+    height: 100%;
+}
+
+#test2{
+    height: 10%;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+#test2 .left{
+    width: 200px;
+    float: left;
+    background: red;
+    height: 100%;
+}
+
+#test2 .right{
+    background: blue;
+    height: 100%;
+    margin-left: 200px;
+}
+
+#test3{
+    height: 10%;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+#test3 .left{
+    background: red;
+    height: 100%;
+    width: calc(100% - 200px);
+    float: left;
+}
+
+#test3 .right{
+    float: left;
+    width: 200px;
+    background: blue;
+    height: 100%;
+}
+
+#test4{
+    height: 10%;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+#test4 .left{
+    background: red;
+    height: 100%;
+    width: 200px;
+    float: left;
+}
+
+#test4 .mid{
+    background: #3bff2f;
+    height: 100%;
+    width: calc(100% - 400px);
+    float: left;
+}
+
+#test4 .right{
+    float: left;
+    width: 200px;
+    background: blue;
+    height: 100%;
+}
+
+#test5{
+    height: 10%;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+#test5 .left{
+    background: red;
+    height: 100%;
+    width: 200px;
+    float: left;
+}
+
+#test5 .mid{
+    background: #3bff2f;
+    height: 100%;
+    width: 200px;
+    float: left;
+}
+
+#test5 .right{
+    float: left;
+    width: calc(100% - 400px);
+    background: blue;
+    height: 100%;
+}
