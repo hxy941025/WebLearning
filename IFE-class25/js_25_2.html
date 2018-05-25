@@ -43,7 +43,7 @@
 
     <p id="result-wrapper">现在距离 2000年1月1日 HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
     <p id="now"></p>
-    </body>
+
 
     <script>
         var selyear = document.getElementById("year-select");
@@ -56,7 +56,6 @@
         var yeardiff,monthdiff,daydiff,hourdiff,mintdiff,secdiff;
         var t,diff,flag;
 
-        clock();
         initopt();
         gettime(selyear);
         gettime(selmonth);
@@ -102,14 +101,14 @@
         }
 
         function clock() {
-             t = new Date();
-             var year = t.getFullYear();
-             var month = t.getMonth()+1;
-             var day = t.getDate();
-             var week = t.getDay();
-             var hour = t.getHours();
-             var mint = t.getMinutes();
-             var sec = t.getSeconds();
+            t = new Date();
+            var year = t.getFullYear();
+            var month = t.getMonth()+1;
+            var day = t.getDate();
+            var week = t.getDay();
+            var hour = t.getHours();
+            var mint = t.getMinutes();
+            var sec = t.getSeconds();
             document.getElementById("now").innerHTML ="标准时间"+year+"年"+(month)+"月"+(day)+"日"+" "+"星期"+(week)+" "+(hour)+":"+(mint)+":"+(sec);
 
         }
@@ -150,4 +149,8 @@
 
 
     </script>
+
+    </body>
+
+
 </html>
