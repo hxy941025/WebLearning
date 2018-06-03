@@ -3,10 +3,11 @@
     padding: 0;
 }
 
+
 html,body{
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .box{
@@ -49,7 +50,7 @@ button{
 }
 
 .left-box{
-    height: inherit;
+    height: 100%;
     width: 100px;
     background-color: #354052;
     position: relative;
