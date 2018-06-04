@@ -17,16 +17,12 @@
 }
 
 .box .left_box{
-    height: 100%;
+    height: 800px;
     width: 240px;
     background-color: #1b1a47;
-    position: fixed;
-    overflow: auto;
+    position: absolute;
 }
 
-.left_box::-webkit-scrollbar {
-    display: none;
-}
 
 .left_box .myImage{
     position: absolute;
@@ -36,7 +32,7 @@
 .left_box .myImage img{
     display: block;
     width: 160px;
-    margin: 30px auto;
+    margin: 40px auto;
     border: 10px #020d29 solid;
     border-radius: 50%;
 }
@@ -47,7 +43,7 @@
 
 .left_box .base_info{
     position: absolute;
-    top: 210px;
+    top: 230px;
     left: 20px;
     color: #e2e3e3;
     font-size: 16px;
@@ -68,7 +64,7 @@
 .left_box .certificate{
     position: absolute;
     left: 20px;
-    top: 410px;
+    top: 430px;
     color: #e2e3e3;
     font-size: 16px;
     line-height: 30px;
