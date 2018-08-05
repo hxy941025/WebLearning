@@ -1,0 +1,36 @@
+.box {
+    width: 942px;
+    height: 700px;
+    background: url("images/photo.png") no-repeat;
+    margin: 0 auto;
+    position: relative;
+}
+
+.content{
+    width: 552px;
+    height: 400px;
+    position: absolute;
+    left: 184px;
+    top: 207px;
+}
+
+.content .big{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.content .small{
+    width: 110px;
+    height: 100%;
+    position: absolute;
+    right: 26px;
+    top: 0;
+}
+
+.content .small img{
+    width: 110px;
+    height: 97px;
+    margin-bottom: 4px;
+    vertical-align: top;
+}
