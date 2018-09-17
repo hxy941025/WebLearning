@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.box{
+    margin: 80px auto;
+    width: 200px;
+}
+
+.title{
+    width: 200px;
+    height: 40px;
+    margin-left: -50px;
+}
+
+.title .leftRank{
+    float: left;
+    margin-right: 10px;
+}
+
+.title .rightRank{
+    float: left;
+}
+
+ul li a{
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 24px;
+    color: black;
+    padding: 4px;
+}
+
+.active{
+    background-color: #68ff5d;
+    font-size: 24px;
+    line-height: 40px;
+}
