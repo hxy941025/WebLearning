@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul,li{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        #list{
+            width: 200px;
+            margin: 0 auto;
+            border: 1px solid black;
+        }
+
+        #list h3{
+            background: url("image/ico1.gif") no-repeat 5px center cyan;
+            height: 32px;
+            line-height: 30px;
+            text-indent: 20px;
+            margin: 0 auto;
+        }
+
+        #list .active{
+            background: url("image/ico2.gif") no-repeat 5px center #ffec7e;
+        }
+
+        #list .act{
+            background: #cbcbcb;
+        }
+
+        #list ul{
+            display: none;
+        }
+        
+        #list ul li{
+            line-height: 28px;
+            text-indent: 20px;
+            border-bottom: 1px solid black;
+        }
+
+    </style>
+</head>
+
+<body>
+    <ul id="list">
+        <li>
+            <h3>我的好友</h3>
+            <ul>
+                <li>张三</li>
+                <li>张三</li>
+                <li>张三</li>
+            </ul>
+        </li>
+        <li>
+            <h3>企业好友</h3>
+            <ul>
+                <li>李四</li>
+                <li>李四</li>
+                <li>李四</li>
+                <li>李四</li>
+            </ul>
+        </li>
+        <li>
+            <h3>黑名单</h3>
+            <ul>
+                <li>王五</li>
+                <li>王五</li>
+                <li>王五</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+
+<script>
+    window.onload = function () {
+        var OUl = document.getElementById('list');
+        var aH3 = OUl.getElementsByTagName('h3');
+        var aUl = OUl.getElementsByTagName('ul');
+        var aLi = null;
+        var arrLi = [];
+
+        function clearUl() {
+            for(var i=0;i<aUl.length;i++){
+                aUl[i].style.display = 'none';
+            }
+        }
+
+        function clearH3() {
+            for(var i=0;i<aH3.length;i++){
+                aH3[i].className = '';
+            }
+        }
+
+        for(var i=0;i<aH3.length;i++){
+            aH3[i].index = i;//自定义属性，添加一个索引值，绑定对应的UL
+            aH3[i].onclick = function () {
+                clearUl();
+                if(this.className == ''){
+                    clearH3();
+                    aUl[this.index].style.display = 'block';//this指h3，index为绑定h3的自定义属性，不能直接调用
+                    this.className = 'active';
+                }else {
+                    aUl[this.index].style.display = 'none';
+                    this.className = '';
+                }
+            }
+        }
+        for(var i=0;i<aUl.length;i++){
+            aLi = aUl[i].getElementsByTagName('li');
+            for(var j=0;j<aLi.length;j++){
+                arrLi.push(aLi[j]);
+            }
+        }
+
+        for(var i=0;i<arrLi.length;i++){
+            arrLi[i].onclick = function () {
+                for(var i=0;i<arrLi.length;i++){
+                    arrLi[i].className = '';
+                }
+                if(this.flag == 1){     //即便没有此自定义属性，直接判断为不等;
+                    this.className = 'none';
+                    this.flag =0;
+                }else {
+                    this.className = 'act';
+                    this.flag =1;
+                }
+
+            }
+        }
+
+    }
+</script>
+
+</html>
