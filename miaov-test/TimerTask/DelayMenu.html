@@ -1,0 +1,164 @@
+<!--
+author:hxy;
+time:2018-9-14;
+func:延时消失的菜单,类似qq资料信息板;
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DelayMenu</title>
+    <style>
+        .title{
+            position: relative;
+            width: 400px;
+            height: 40px;
+            background: cornflowerblue;
+            border-radius: 8px;
+        }
+        .title button{
+            height: 20px;
+            background: none;
+            border: transparent;
+            padding: 2px 12px;
+            margin: 10px;
+            color: #ffffff;
+        }
+
+        .content a{
+            color: #437ac3;
+            text-decoration: none;
+
+        }
+
+        .cont{
+            background: darkgray;
+            line-height: 30px;
+            width: 350px;
+            margin-top: 10px;
+            border-radius: 8px;
+            text-align: center;
+            word-spacing: 10px;
+            display: none;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="box">
+        <div class="title">
+            <button>首页</button>
+            <button>关于我们</button>
+            <button>作品</button>
+            <button>博客</button>
+        </div>
+
+        <div class="content">
+            <div id="cont1" class="cont">
+                <a href="">最近更新</a>
+                <a href="">活动</a>
+                <a href="">报名试听</a>
+                <a href="">学员</a>
+            </div>
+            <div id="cont2" class="cont">
+                <a href="">妙味讲师</a>
+                <a href="">培训方式</a>
+                <a href="">培训理念</a>
+                <a href="">联系我们</a>
+            </div>
+            <div id="cont3" class="cont">
+                <a href="">xxx</a>
+                <a href="">xxx</a>
+                <a href="">xxx</a>
+                <a href="">xxx</a>
+            </div>
+            <div id="cont4" class="cont">
+                <a href="">xxx</a>
+                <a href="">xxx</a>
+                <a href="">xxx</a>
+                <a href="">xxx</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var oBtn = document.getElementsByTagName('button');
+        var oCont = document.getElementsByClassName('cont');
+        var timer = null;
+        var timer1 = null;
+
+        for( var i=0; i<oBtn.length; i++){
+            oBtn[i].index = i;
+            oBtn[i].onmouseover = function () {
+                clear();
+                clearInterval(timer);
+                clearInterval(timer1);
+                oCont[this.index].style.display = 'block';
+
+            }
+
+            oBtn[i].onmouseout = function () {
+                var index = this.index;
+                timer = setInterval(function () {
+                    oCont[index].style.display = 'none';
+                },1000)
+            }
+
+        }
+
+        for ( var i=0; i<oCont.length; i++){
+            oCont[i].index = i;
+            oCont[i].onmouseover = function () {
+                clearInterval(timer);
+                clearInterval(timer1);
+                oCont[this.index].style.display = 'block';
+            }
+            oCont[i].onmouseout = function () {
+                clearInterval(timer1);
+                var index = this.index;
+                timer1 = setInterval(function () {
+                    oCont[index].style.display = 'none';
+                },1000)
+            }
+        }
+
+        function clear() {
+            for( var i=0; i<oCont.length; i++){
+                oCont[i].style.display = 'none';
+            }
+        }
+
+        /*移动某个元素
+            obj:移动的元素对象;
+            attr:改变元素的属性(方向)
+            dir:移动的速度
+            target:移动的距离
+            endFn:移动结束后的回调函数
+         */
+        function DoMove( obj, attr, dir, target, endFn) {
+            dir = parseInt(getStyle( obj, attr)) < target? dir: -dir;
+            clearInterval(obj.timer);
+
+            obj.timer = setInterval(function () {
+                var speed = parseInt(getStyle( obj, attr)) + dir;
+
+                if(speed > target && dir>0 ||speed < target && dir < 0 ){
+                    speed = target;
+                }
+
+                obj.style[attr] = speed + 'px';
+
+                if(speed == target){
+                    clearInterval(obj.timer);
+                    endFn && endFn();
+                }
+            },1000)
+        }
+
+
+    </script>
+
+</body>
+</html>
