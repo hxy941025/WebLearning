@@ -1,0 +1,117 @@
+<!--author:hxy;
+    time:2018-9-15;
+    func:实现字符串的查找和替换，输入为空或空格时提示输入为空；-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SearchAndReplace</title>
+    <style>
+        .box {
+            width: 400px;
+            border: 10px solid #cbcbcb;
+            font-size: 16px;
+            line-height: 24px;
+            padding: 10px;
+            position: relative;
+        }
+        .User{
+            margin: 10px;
+            position: absolute;
+            left: 440px;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .search{
+            position: relative;
+            left: 0;
+            top: 10px;
+            border: 5px solid #cbcbcb;
+            background: #68ff5d;
+            padding: 10px;
+            width: 400px;
+            display: none;
+        }
+        .replace{
+            position: relative;
+            left: 0;
+            top: 10px;
+            border: 5px solid #cbcbcb;
+            background: #68ff5d;
+            padding: 10px;
+            width: 400px;
+            display: none;
+        }
+        span{
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p>妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！<br />
+            2013年底，妙味课堂最新推出"远程培训"服务，受到很多朋友们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友实现技术提升……</p>
+    </div>
+
+    <div class="User">
+        <input type="button" value="展开" style="width: 60px;height: 30px;">
+        <input type="button" value="查找" style="width: 60px;height: 30px;display: none;">
+        <input type="button" value="替换" style="width: 60px;height: 30px;display: none;">
+    </div>
+
+    <div class="search">
+        <input type="text">
+        <input type="button" value="查找" id="seabtn">
+    </div>
+    <div class="replace">
+        <input type="text">
+        <input type="text">
+        <input type="button" value="替换" id="repbtn">
+    </div>
+</body>
+<script>
+    var aInp = document.getElementsByTagName('input');
+    var aP = document.getElementsByTagName('p')[0];
+    var iniText = aP.innerHTML;
+
+    //展开功能按钮
+    aInp[0].onclick = function () {
+        if(aInp[1].style.display == 'none'){
+            aInp[1].style.display = 'block';
+            aInp[2].style.display = 'block';
+        }
+        else {
+            aInp[1].style.display = 'none';
+            aInp[2].style.display = 'none';
+        }
+    };
+
+    aInp[1].onclick = function () {
+        document.getElementsByClassName('replace')[0].style.display = 'none';
+        document.getElementsByClassName('search')[0].style.display = 'block';
+    };
+    aInp[2].onclick = function () {
+        document.getElementsByClassName('search')[0].style.display = 'none';
+        document.getElementsByClassName('replace')[0].style.display = 'block';
+    };
+
+    document.getElementById('seabtn').onclick = function () {
+        var str = aInp[3].value;
+        aP.innerHTML = iniText; //初始化一次，清除上次搜索结果
+        if(!str) alert('请输入搜索内容');
+        if(aP.innerHTML.indexOf(str) == -1) alert('未找到'+ str);
+
+        aP.innerHTML = aP.innerHTML.split(str).join('<span>'+ str +'</span>')
+    };
+    document.getElementById('repbtn').onclick = function () {
+        var str = aInp[5].value;
+        var newstr = aInp[6].value;
+        aP.innerHTML = iniText; //初始化一次，清除上次搜索结果
+        if(!str) alert('请输入需要替换的内容');
+        if(aP.innerHTML.indexOf(str) == -1) alert('未找到'+ str);
+
+        aP.innerHTML = aP.innerHTML.split(str).join('<span>'+ newstr +'</span>')
+    }
+</script>
+</html>
