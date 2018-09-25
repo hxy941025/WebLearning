@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MoveWord</title>
+    <style>
+        textarea{
+            font-size: 18px;
+            line-height: 24px;
+            padding: 5px;
+        }
+        .wrap{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .box{
+            width: 100px;
+            margin: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <textarea rows="6" cols="50" style="resize: none">妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！2013年底，妙味课堂最新推出远程培训服务，受到很多朋友们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友实现技术提升</textarea>
+
+        <div class="box">
+            <input type="button" value="文字转移" style="background: orangered;padding: 10px;border: transparent">
+            <p>0/0</p>
+            <div class="progress" style="display: none">
+                <div  style="background: #ffb976;width: 8px;height: 8px;float: left;margin-right: 5px;margin-left: 8px"></div>
+                <div  style="background: #ffb976;width: 8px;height: 8px;float: left;margin-right: 5px"></div>
+                <div  style="background: #ffb976;width: 8px;height: 8px;float: left;margin-right: 5px"></div>
+                <div  style="background: #ffb976;width: 8px;height: 8px;float: left;margin-right: 5px"></div>
+                <div  style="background: #ffb976;width: 8px;height: 8px;float: left;margin-right: 5px"></div>
+                <div  style="background: #ffb976;width: 8px;height: 8px;float: left;margin-right: 5px"></div>
+                <div  style="background: #ffb976;width: 8px;height: 8px;float: left;margin-right: 5px"></div>
+            </div>
+
+        </div>
+
+        <textarea rows="6" cols="50" style="resize: none" readonly></textarea>
+    </div>
+
+</body>
+
+<script>
+    var btn = document.getElementsByTagName('input')[0];
+    var str = document.getElementsByTagName('textarea')[0];
+    var newStr = document.getElementsByTagName('textarea')[1];
+    var progress = document.getElementsByClassName('progress')[0];
+    var block = progress.getElementsByTagName('div');
+    var oP = document.getElementsByTagName('p')[0];
+    var timer = null;
+    var num = 0;
+    var newlen = 0;
+
+    btn.onclick = function () {
+        var strlen = str.value.length;
+        newStr.value = '';
+        progress.style.display = 'block';
+
+        btn.style.backgroundColor = '#FFA178';
+        timer = setInterval(function () {
+            newlen = newStr.value.length;
+
+            newStr.value = newStr.value.concat(str.value[0]);
+            str.value = str.value.replace(str.value[0],'');
+            oP.innerHTML = newlen + '/' + strlen;
+
+            if(str.value.length == 0){
+                clearInterval(timer);
+                oP.innerHTML = strlen + '/' + strlen;
+                btn.style.backgroundColor = 'orangered';
+                progress.style.display = 'none';
+            }
+
+            for(var i=0; i<block.length; i++){
+                block[i].style.backgroundColor = '#FFA178';
+            }
+
+            block[num%block.length].style.backgroundColor = 'orangered';
+            num++;
+
+        },40)
+
+    }
+</script>
+</html>
