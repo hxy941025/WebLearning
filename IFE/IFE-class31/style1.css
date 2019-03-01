@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#option{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#option input{
+    width: 20px;
+    text-align: center;
+}
+
+#table-wrapper{
+    margin-left: 20px;
+    margin-top: 20px;
+}

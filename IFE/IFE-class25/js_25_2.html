@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <body>
+    <select id="year-select">
+        <option value="2000">2000</option>
+        <option value="2001">2001</option>
+        <option value="2002">2002</option>
+        <option value="2032">2032</option>
+    </select>
+
+    <select id="month-select">
+        <option value="1">1</option>
+
+    </select>
+
+    <select id="day-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="31">31</option>
+    </select>
+
+    <select id="hour-select">
+        <option value="0">00</option>
+        <option value="1">01</option>
+        <option value="23">23</option>
+    </select>
+
+    <select id="minite-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option>59</option>
+    </select>
+
+    <select id="second-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option>59</option>
+    </select>
+
+    <p id="result-wrapper">现在距离 2000年1月1日 HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+    <p id="now"></p>
+
+
+    <script>
+        var selyear = document.getElementById("year-select");
+        var selmonth = document.getElementById("month-select");
+        var selday = document.getElementById("day-select");
+        var selhour = document.getElementById("hour-select");
+        var selmint = document.getElementById("minite-select");
+        var selsec = document.getElementById("second-select");
+        var int =setInterval("clock()",500);
+        var yeardiff,monthdiff,daydiff,hourdiff,mintdiff,secdiff;
+        var t,diff,flag;
+
+        initopt();
+        gettime(selyear);
+        gettime(selmonth);
+        gettime(selday);
+        gettime(selhour);
+        gettime(selmint);
+        gettime(selsec);
+
+
+        function initopt() {
+            for(var i=0;i<=32;i++){
+                selyear.options[i] = new Option(2000+i)
+            }
+
+            for(var i=1;i<12;i++){
+                selmonth.options[i] = new Option(i+1);
+            }
+
+            for(var i=1;i<31;i++){
+                selday.options[i] = new Option(i+1)
+            }
+
+            for(var i=0;i<=23;i++){
+                selhour.options[i] = new Option(i)
+            }
+
+            for(var i=0;i<=59;i++){
+                selmint.options[i] = new Option(i)
+            }
+
+            for(var i=0;i<=59;i++){
+                selsec.options[i] = new Option(i)
+            }
+        }
+
+
+        function gettime(time) {
+            time.onchange = function (ev) {
+                setime = ev.target.value;
+                calc();
+                document.getElementById("result-wrapper").innerHTML ="现在距离 "+selyear.value+"年"+selmonth.value+"月"+selday.value+"日 "+selhour.value+":"+selmint.value+":"+selsec.value+" "+porf(diff)+yeardiff+"年"+monthdiff+"月"+daydiff+"日"+hourdiff+"小时"+mintdiff+"分钟"+secdiff+"秒";
+            }
+        }
+
+        function clock() {
+            t = new Date();
+            var year = t.getFullYear();
+            var month = t.getMonth()+1;
+            var day = t.getDate();
+            var week = t.getDay();
+            var hour = t.getHours();
+            var mint = t.getMinutes();
+            var sec = t.getSeconds();
+            document.getElementById("now").innerHTML ="标准时间"+year+"年"+(month)+"月"+(day)+"日"+" "+"星期"+(week)+" "+(hour)+":"+(mint)+":"+(sec);
+
+        }
+
+        function calc() {
+            clock();
+            var now =t.getTime()+28799996;
+            var set =Date.UTC(selyear.value,selmonth.value-1,selday.value,selhour.value,selmint.value,selsec.value);
+
+            if(now>set){
+                diff= now-set;
+                flag = 0;
+            }
+            else {
+                diff =set-now
+                flag =1;
+            }
+
+            yeardiff = Math.floor(diff/1000/3600/24/365);//yeartoms:31536000000
+            monthdiff = Math.floor((diff - yeardiff*31536000000)/2628000000);//monthtoms:2628000000
+            daydiff = Math.floor((diff - yeardiff*31536000000- monthdiff*2628000000)/86400000);//daytoms:86400000
+            hourdiff = Math.floor((diff - yeardiff*31536000000- monthdiff*2628000000- daydiff*86400000)/3600000);//hourtoms:3600*1000
+            mintdiff = Math.floor((diff - yeardiff*31536000000- monthdiff*2628000000- daydiff*86400000- hourdiff*3600000)/60000);//minutetoms:60*1000
+            secdiff = Math.floor((diff - yeardiff*31536000000- monthdiff*2628000000- daydiff*86400000- hourdiff*3600000 - mintdiff*60000)/1000);//secondtoms:1000
+
+
+            console.log(now,set,yeardiff,monthdiff,daydiff,hourdiff,mintdiff,secdiff);
+
+        }
+
+        function porf(diff) {
+            if(flag==0){
+                return "已经过去"
+            }
+            else  return "还差"
+        }
+
+
+
+    </script>
+
+    </body>
+
+
+</html>

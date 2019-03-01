@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="btn">开始</button>
+
+<script>
+    function test() {
+        var i = 0;
+        for(i;i<100;i++){
+            if(i % 3 == 0 || i % 10 ==3){
+                console.log("pa");
+            }
+            else {
+                console.log(i);
+            }
+
+        }
+    }
+
+    document.getElementById("btn").onclick = function () { test() };
+
+
+</script>
+
+</body>
+</html>

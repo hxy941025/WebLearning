@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#option{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#option input{
+    width: 20px;
+    text-align: center;
+    position: relative;
+}
+
+#table-wrapper{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#save{
+    position: absolute;
+    top: 30px;
+    left: 350px;
+    width: 40px;
+    height: 20px;
+}

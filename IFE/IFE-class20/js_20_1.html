@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div >
+    <input id="name" type="text" onkeydown="setKeys()">
+    <button id="submit-btn" >Submit</button>
+</div>
+
+<script>
+    document.getElementById("submit-btn").onclick = function () {
+        var a;
+        a = document.getElementById("name").value;
+        console.log(a);
+    }
+
+    function setKeys()
+    {
+        console.log(event.keyCode);
+        if (event.keyCode == 13){
+            document.getElementById("submit-btn").click();
+        }
+        else if(event.keyCode == 27){
+            document.getElementById("name").value="";
+        }
+
+    }
+
+</script>
+
+</body>
+</html>

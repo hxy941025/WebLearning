@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin-left: 10px;
+    font-family:"微软雅黑";
+}
+
+.tit h2{
+    color: white;
+    background: #3b6eff;
+    font-size: 40px;
+    position: relative;
+    width: 120px;
+    height: 700px;
+    text-align: center;
+    padding: 40px;
+    float: left;
+}
+
+.t1 h3{
+    line-height: 50px;
+    font-size: 30px;
+    margin: 20px;
+    position: relative;
+    clear: both;
+}
+
+.box{
+    float: left;
+}
+
+.t2 p{
+    float: left;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.t3 p{
+    margin-left: 20px;
+}
+
+#git{
+    color: blue;
+}

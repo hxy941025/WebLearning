@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper{
+    width: 200px;
+}
+
+.wrapper #email-input{
+    width: 100%;
+}
+
+.wrapper #email-sug-wrapper{
+    display: none;
+    width: 200px;
+}
+
+#email-sug-wrapper li:hover {
+    background-color: #338bff;
+}
+
+/*#email-sug-wrapper li:first-child{*/
+    /*background-color: #8ce7ff;*/
+/*}*/
