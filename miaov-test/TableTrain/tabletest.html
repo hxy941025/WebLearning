@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    th,td{
+        width: 100px;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div id="box">
+        <table id="tab" border="1">
+            <thead id="tHead">
+                <th><input type="checkbox">商品全选</th>
+                <th>商品编号</th>
+                <th>商品名称</th>
+                <th>商品单价</th>
+                <th>商品数量</th>
+                <th>商品删除</th>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+<script>
+    var aData = [
+        {
+            num: 1,
+            name: "雪碧",
+            price: 2.2,
+            count: 50
+        },
+        {
+            num: 2,
+            name: "可口可乐",
+            price: 2.3,
+            count: 55
+        },
+        {
+            num: 3,
+            name: "百事可乐",
+            price: 2.2,
+            count: 50
+        },
+        {
+            num: 4,
+            name: "芬达",
+            price: 2.2,
+            count: 50
+        },
+        {
+            num: 5,
+            name: "七喜",
+            price: 2.2,
+            count: 50
+        },
+        {
+            num: 6,
+            name: "美年达",
+            price: 2.2,
+            count: 50
+        },
+        {
+            num: 7,
+            name: "王老吉",
+            price: 2.2,
+            count: 50
+        },
+    ];
+
+
+    var tab = document.getElementById('tab');
+    var tBody = tab.tBodies[0];
+    var selectAll = document.getElementById('tHead').children[0].children[0].children[0];
+
+
+    for(var i =0; i<aData.length; i++){
+        var tr = document.createElement('tr');
+
+        if(i%2){
+            tr.style.backgroundColor = '#fffd00';
+        }
+        else {
+            tr.style.backgroundColor = '#00e2ff';
+        }
+
+        //生成全选
+        var td = document.createElement('td');
+        td.innerHTML = '<input type="checkbox">';
+        tr.appendChild(td);
+
+
+        for(var attr in aData[i]){
+            var td = document.createElement('td');
+            td.innerHTML = aData[i][attr];
+            tr.appendChild(td);
+        }
+
+        //生成删除
+        var td = document.createElement('td');
+        td.innerHTML = '<a href="javascript:;">删除</a>';
+        tr.appendChild(td);
+        //点击删除的操作: 1、删除 2、重排顺序
+        var select = td.children[0];
+        select.onclick = function () {
+            tBody.removeChild(this.parentNode.parentNode)
+
+            for(var i=0; i<tBody.children.length; i++){
+                tBody.children[i].children[1].innerHTML = (i+1).toString()
+                if(i%2){
+                    tBody.children[i].style.backgroundColor = '#fffd00';
+                }
+                else {
+                    tBody.children[i].style.backgroundColor = '#00e2ff';
+                }
+            }
+        }
+
+        tBody.appendChild(tr);
+
+    }
+
+    selectAll.onclick = function () {
+
+        for(var i=0; i<tBody.children.length; i++){
+            //checked为bool值,直接true跟false判断,使下面单个选项checked状态与全选状态一致即可
+            tBody.children[i].children[0].children[0].checked = selectAll.checked;
+        }
+    }
+
+</script>
+
+</html>
