@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-size: 14px;
+        }
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        #wrap {
+            width: 760px;
+            margin: 0 auto;
+            padding: 145px 120px 95px;
+        }
+        #section {
+            width: 760px;
+            height: 260px;
+            -moz-box-shadow: 0 0 4px rgba(0,0,0,.2);
+            box-shadow: 0 0 4px rgba(0,0,0,.2);
+        }
+        #choose {
+            width: 760px;
+            height: 50px;
+            margin: 0 auto;
+            line-height: 50px;
+            text-indent: 21px;
+            overflow: hidden;
+        }
+        #type {
+            width: 100%;
+            height: 210px;
+            padding: 17px 0 16px 28px;
+        }
+        #type li {
+            height: 44px;
+            color: #8a8a8a;
+            line-height: 44px;
+        }
+        #type a {
+            margin: 0 12px 0 11px;
+            color: #000;
+        }
+        #choose mark {
+            position: relative;
+            display: inline-block;
+            height: 24px;
+            line-height: 24px;
+            border: 1px solid #28a5c4;
+            color: #28a5c4;
+            margin: 12px 5px 0;
+            background: none;
+            padding: 0 30px 0 6px;
+            text-indent: 0;
+        }
+        #choose span {
+            float: left;
+        }
+        #choose div {
+            float: left;
+        }
+        #choose mark a {
+            position: absolute;
+            top: 3px;
+            right: 2px;
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background: #28a5c4;
+            color: #fff;
+            line-height: 18px;
+            font-size: 16px;
+            text-align: center;
+        }
+        .shop-list {
+            height: 3000px;
+
+        }
+        .filter-nav {
+            height: 30px;
+            margin-top: 30px;
+
+        }
+        .filter-nav span {
+            font-size: 14px;
+            color: #999;
+            line-height: 30px;
+            padding: 0px 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .filter-nav .nav-color {
+            color: #5683EA;
+        }
+        .shop-list pre {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <section id="section">
+            <nav id="choose">
+                <span>你的选择：</span>
+                <div>
+                    <!-- <mark>魅族<a href="javascript:;">x</a></mark>
+                    <mark>魅族<a href="javascript:;">x</a></mark> -->
+                </div>
+            </nav>
+            <ul id="type">
+
+            </ul>
+        </section>
+        <nav class="filter-nav">
+            <span class="nav-color">综合排序</span>
+            <span>销量排序</span>
+            <span>价格低到高</span>
+            <span>价格高到低</span>
+        </nav>
+        <section class="shop-list"></section>
+    </div>
+
+    <script>
+        var crumbData = [
+            {
+                "title": "品牌",
+                "data": [ "苹果","小米","锤子","魅族","华为","三星","OPPO","vivo","乐视"]
+            },
+            {
+                "title": "尺寸",
+                "data": ["4.0-4.5英寸","4.6-4.9英寸","5.0-5.5英寸","6.0英寸以上"]
+            },
+            {
+                "title": "系统",
+                "data": ["android","ios","window phone","无","其他"]
+            },
+            {
+                "title": "网络",
+                "data": ["联通3G","双卡单4G","双卡双4G","联通4G"]
+            }
+        ];
+
+        var type = document.getElementById('type');
+
+        var newLi = null;
+        var newSpan = null;
+        var newA = null;
+
+
+        //加载数据列表及内容，生成li和a标签
+        for(var i=0; i<crumbData.length; i++){
+            newLi = document.createElement("li");
+            newSpan = document.createElement("span");
+
+            newSpan.innerHTML = crumbData[i].title;
+            newLi.appendChild(newSpan);
+
+            for(var j = 0; j < crumbData[i].data.length; j++){
+                newA = document.createElement("a");
+                newA.href = 'javascript:;';
+                newA.innerText = crumbData[i].data[j];
+
+                newLi.appendChild(newA)
+            }
+            type.appendChild(newLi);
+        }
+
+
+        //添加选择事件
+        var lis = type.children;
+        var itemA = null;
+        var prev = [];
+        //添加一个存储对象，用于显示已选择标签
+        var chooseObj = {};
+
+        //利用let的块作用域，为每个li存一个prev
+        for(let i=0; i<lis.length; i++){
+            itemA = lis[i].getElementsByTagName('a');
+
+            for(let j=0; j<itemA.length; j++){
+                itemA[j].onclick = function () {
+                    lis[i].sel = j;
+                    if(prev[i]){
+                        prev[i].style.color = '';
+                    }
+                    this.style.color = 'red';
+                    prev[i] = this;
+                    chooseObj[i] = this.innerHTML;
+                    // console.log(chooseObj)
+                    createChoose();
+                }
+            }
+        }
+
+        var chooseElement = document.getElementById('choose').children[1];
+        // console.log(chooseElement)
+
+        function createChoose() {
+            chooseElement.innerHTML = '';
+            for(var i=0; i<lis.length; i++ ){
+                if(chooseObj[i])
+                chooseElement.innerHTML += '<mark>'+ chooseObj[i] +'<a href="javascript:;">x</a></mark>';
+
+            var chooseA = chooseElement.getElementsByTagName("a");
+                for(let j=0; j<chooseA.length; j++){
+                    chooseA[j].onclick = function () {
+                        this.parentNode.remove();
+                        var index = null;
+                        //遍历对象，寻找value值相等的key，即取消的那个数组
+                        for (var attr in chooseObj){
+                            if(chooseObj[attr] === chooseObj[j])
+                                index = attr;
+                        }
+
+                        lis[index].getElementsByTagName('a')[lis[index].sel].style.color = '';
+
+                        delete chooseObj[j];
+
+                    }
+                }
+            }
+        }
+
+
+
+
+
+    </script>
+</body>
+
+
+
+</html>
